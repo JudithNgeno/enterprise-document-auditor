@@ -179,3 +179,21 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+# Streamlit local secrets configuration
+.streamlit/secrets.toml
+# Local virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Workspace state cache metadata
+.streamlit/secrets.toml
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# Local operational temp storage streams
+sys_stream_*
+temp_*
