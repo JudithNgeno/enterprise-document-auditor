@@ -7,7 +7,7 @@ st.set_page_config(page_title="Document Auditor & Compliance Engine", page_icon=
 st.title("🛡️ Enterprise Document Auditor")
 st.caption("Automated format routing, semantic multi-format ingestion, and localized data validation matrix.")
 
-# Dual-Mode credential verification (Checks local disk secrets first, falls back to secure user panel if public)
+# Dual-Mode credential verification
 openai_api_key = st.secrets.get("OPENAI_API_KEY", "")
 
 sidebar = st.sidebar
@@ -20,7 +20,7 @@ if not openai_api_key:
         help="Access token is stored entirely in memory cache and never tracked."
     )
     if not openai_api_key:
-        st.info("🔑 System offline. Provide a valid authorization string in the sidebar panel to initialize database connections.")
+        st.info(" System offline. Provide a valid authorization string in the sidebar panel to initialize database connections.")
         st.stop()
 
 # Initialize detached business engine using verified credentials
@@ -56,10 +56,10 @@ if uploaded_file:
                     user_query
                 )
                 
-                st.markdown("### 📊 Engine Findings")
+                st.markdown("###  Engine Findings")
                 st.info(execution_payload["answer"])
                 
-                with st.expander("🔍 Audited Source References"):
+                with st.expander(" Audited Source References"):
                     for reference in execution_payload["context"]:
                         source_page = reference.metadata.get("page", 0) + 1
                         st.markdown(f"**Data Segment Reference Matrix — Section/Page {source_page}:**")
