@@ -75,3 +75,7 @@ else:
     if "vector_index" in st.session_state:
         del st.session_state.vector_index
     st.info("Awaiting structural document stream execution via ingestion panel.")
+
+sidebar.markdown("---")
+sidebar.markdown("**Developed by [Judith Ngeno]**")
+sidebar.sidebar_link("🔗 Connect on LinkedIn", url="https://www.linkedin.com/in/judith-ngeno-93a28a208/")    

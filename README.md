@@ -1,4 +1,5 @@
 # Multi-Format Enterprise Document Auditor & Data Extractor
+[![LinkedIn](https://img.shields.io/badge/Connect_With_Me-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/judith-ngeno-93a28a208/)
 
 An automated, cross-platform compliance processing backend engineered to systematically index, parse, and evaluate unstructured data formats (PDF, DOCX, TXT, CSV) utilizing custom Retrieval-Augmented Generation (RAG) paradigms. This architecture completely detaches view layout updates from structural document calculations, optimizing database tracking speeds.
 
@@ -21,3 +22,12 @@ An automated, cross-platform compliance processing backend engineered to systema
    ```bash
    git clone [https://github.com/YOUR_USERNAME/enterprise-document-auditor.git](https://github.com/YOUR_USERNAME/enterprise-document-auditor.git)
    cd enterprise-document-auditor
+
+   ## Contact & Collaboration
+
+I am actively looking for **[Python Developer / AI Engineer]** opportunities! If you are a recruiter, hiring manager, or fellow developer who wants to discuss this project, potential roles, or collaborations, feel free to reach out:
+
+* **LinkedIn:** [https://www.linkedin.com/in/judith-ngeno-93a28a208/]
+* **Email:** [judithngeno042@gmail.com]
+
+*If you cloned this app and found it useful, drop a ⭐ on this repository, it helps a lot!*
