@@ -22,28 +22,40 @@ class DocumentAuditorEngine:
 
     def process_document(self, file_path: str) -> FAISS:
         """
-        Extracts raw textual strings by dynamically matching file extensions 
-        to specific low-level system parser engines.
+        Dynamically detects file extensions and routes them to the correct 
+        enterprise parsing sub-engine. Includes optimized Pandas processing for CSVs.
         """
         _, file_extension = os.path.splitext(file_path.lower())
         
-        # Explicit parser routing architecture
-        loader_routing_map = {
-            ".pdf": PyPDFLoader,
-            ".docx": Docx2txtLoader,
-            ".txt": TextLoader,
-            ".csv": CSVLoader
-        }
-        
-        if file_extension not in loader_routing_map:
-            raise ValueError(f"System exception: Stream extension '{file_extension}' rejected by core loader.")
+        # High-Speed CSV Handling Bypass
+        if file_extension == ".csv":
+            import pandas as pd
+            from langchain_core.documents import Document
             
-        SelectedLoader = loader_routing_map[file_extension]
-        loader = SelectedLoader(file_path)
-        raw_docs = loader.load()
+            # Load dataframe and stringify rows into dense unified structures
+            df = pd.read_csv(file_path)
+            csv_string = df.to_string(index=False)
+            
+            # Pack the entire structure into a high-speed unified data block
+            raw_docs = [Document(page_content=csv_string, metadata={"source": file_path})]
+            
+        else:
+            # Standard corporate routing map for standard texts/PDFs/Word docs
+            loader_routing_map = {
+                ".pdf": PyPDFLoader,
+                ".docx": Docx2txtLoader,
+                ".txt": TextLoader
+            }
+            
+            if file_extension not in loader_routing_map:
+                raise ValueError(f"Unsupported format '{file_extension}'. System strictly accepts PDF, DOCX, TXT, and CSV.")
+                
+            SelectedLoader = loader_routing_map[file_extension]
+            loader = SelectedLoader(file_path)
+            raw_docs = loader.load()
         
-        # Consistent document text fragmentation standard
-        splitter = RecursiveCharacterTextSplitter(chunk_size=1200, chunk_overlap=150)
+        # Fast memory-chunk splitter pass
+        splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=200)
         chunks = splitter.split_documents(raw_docs)
         
         vector_store = FAISS.from_documents(chunks, self.embeddings)
@@ -82,4 +94,3 @@ class DocumentAuditorEngine:
             "answer": model_output.content,
             "context": retrieved_docs
         }
-    
